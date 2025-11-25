@@ -2,7 +2,7 @@
 
 :root {
   /* surfaces */
-  --background: var(--gray-50);
+  --background: var(--gray-100);
   --foreground: var(--gray-900);
 
   --card: #ffffff;
@@ -34,11 +34,28 @@
   --success: var(--green-600);
   --success-foreground: var(--white);
   --warning: var(--orange-600);
+  --warning-foreground: var(--white);
+  --info: var(--cyan-600);
+  --info-foreground: var(--white);
   
   /* button hover states */
   --secondary-hover: var(--gray-300);
   --destructive-hover: #c62828;
   --success-hover: #2e7d32;
+
+  /* subtle backgrounds for stats/alerts */
+  --bg-primary-subtle: var(--blue-50);
+  --bg-success-subtle: #e8f5e9;
+  --bg-warning-subtle: #fff3e0;
+  --bg-destructive-subtle: #ffebee;
+  --bg-muted-subtle: var(--gray-100);
+  
+  /* borders for stats/alerts */
+  --border-primary: var(--blue-200);
+  --border-success: #81c784;
+  --border-warning: #ffb74d;
+  --border-destructive: #e57373;
+  --border-muted: var(--gray-400);
 
   /* forms */
   --border: var(--gray-300);
