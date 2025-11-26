@@ -10,7 +10,11 @@ interface Column {
   sortable?: boolean;
 }
 
-interface DataTableProps<T = any> {
+/**
+ * 테이블 행 데이터의 기본 타입
+ * @description 객체 타입을 허용하여 다양한 엔티티와 호환
+ */
+interface DataTableProps<T extends object = Record<string, unknown>> {
   columns?: Column[];
   data?: T[];
   striped?: boolean;
@@ -23,7 +27,7 @@ interface DataTableProps<T = any> {
   renderCell?: (row: T, columnKey: string) => React.ReactNode;
 }
 
-export const DataTable = <T extends Record<string, any>>({
+export const DataTable = <T extends object>({
   columns,
   data = [],
   striped = false,
@@ -53,16 +57,21 @@ export const DataTable = <T extends Record<string, any>>({
     setSortDirection(newDirection);
 
     const sorted = [...tableData].sort((a, b) => {
-      const aVal = a[columnKey];
-      const bVal = b[columnKey];
+      const aVal = (a as Record<string, unknown>)[columnKey];
+      const bVal = (b as Record<string, unknown>)[columnKey];
 
+      // 숫자 비교
       if (typeof aVal === 'number' && typeof bVal === 'number') {
         return newDirection === 'asc' ? aVal - bVal : bVal - aVal;
       }
 
+      // 문자열 비교 (null/undefined 안전 처리)
+      const aStr = aVal != null ? String(aVal) : '';
+      const bStr = bVal != null ? String(bVal) : '';
+      
       return newDirection === 'asc'
-        ? String(aVal).localeCompare(String(bVal))
-        : String(bVal).localeCompare(String(aVal));
+        ? aStr.localeCompare(bStr)
+        : bStr.localeCompare(aStr);
     });
 
     setTableData(sorted);
@@ -70,8 +79,8 @@ export const DataTable = <T extends Record<string, any>>({
 
   const filteredData = searchable && searchTerm
     ? tableData.filter(row =>
-        Object.values(row).some(val =>
-          String(val).toLowerCase().includes(searchTerm.toLowerCase())
+        Object.values(row as Record<string, unknown>).some(val =>
+          val != null && String(val).toLowerCase().includes(searchTerm.toLowerCase())
         )
       )
     : tableData;
@@ -83,7 +92,7 @@ export const DataTable = <T extends Record<string, any>>({
 
   const totalPages = Math.ceil(filteredData.length / pageSize);
 
-  const actualColumns = columns || (tableData[0] ? Object.keys(tableData[0]).map(key => ({ key, header: key, width: undefined })) : []);
+  const actualColumns = columns || (tableData[0] ? Object.keys(tableData[0] as Record<string, unknown>).map(key => ({ key, header: key, width: undefined })) : []);
 
   return (
     <div className="w-full">
@@ -133,7 +142,7 @@ export const DataTable = <T extends Record<string, any>>({
               {actualColumns.map((column) => (
                 <TableCell key={column.key}>
                   {/* ✅ Render Props: 외부에서 주입된 렌더링 함수 사용 */}
-                  {renderCell ? renderCell(row, column.key) : row[column.key]}
+                  {renderCell ? renderCell(row, column.key) : String((row as Record<string, unknown>)[column.key] ?? '')}
                 </TableCell>
               ))}
             </TableRow>

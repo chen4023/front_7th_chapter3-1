@@ -5,7 +5,7 @@ import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const alertVariants = cva(
-  "flex w-full rounded border px-4 py-3 text-sm [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg+div]:translate-y-[-3px] [&:has(svg)]:pl-11",
+  "flex w-full rounded border px-4 py-3 text-sm gap-2",
   {
     variants: {
       variant: {
