@@ -3,13 +3,7 @@
 
 @import "./tokens/color-primitives.css";
 @import "./tokens/color-semantics.css";
-@import "./tokens/radius.css";
-@import "./tokens/typography.css";
-@import "./tokens/borders.css";
-@import "./tokens/shadows.css";
-@import "./tokens/transitions.css";
-@import "./tokens/z-index.css";
-@import "./tokens/opacity.css";
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -59,68 +53,6 @@
   --color-border-warning: var(--border-warning);
   --color-border-destructive: var(--border-destructive);
   --color-border-muted: var(--border-muted);
-
-  
-  /* ===== Border Radius ===== */
-  --radius-none: var(--border-radius-none);
-  --radius-sm: var(--border-radius-sm);
-  --radius-base: var(--border-radius-base);
-  --radius-md: var(--border-radius-md);
-  --radius-lg: var(--border-radius-lg);
-  --radius-full: var(--border-radius-full);
-
-  /* ===== Font Families ===== */
-  --font-sans: var(--font-sans);
-  --font-base: var(--font-base);
-
-  /* ===== Font Sizes ===== */
-  --font-size-xs: var(--font-size-xs);
-  --font-size-sm: var(--font-size-sm);
-  --font-size-base: var(--font-size-base);
-  --font-size-md: var(--font-size-md);
-  --font-size-lg: var(--font-size-lg);
-  --font-size-xl: var(--font-size-xl);
-
-  /* ===== Font Weights ===== */
-  --font-weight-normal: var(--font-weight-normal);
-  --font-weight-medium: var(--font-weight-medium);
-  --font-weight-bold: var(--font-weight-bold);
-
-  /* ===== Line Heights ===== */
-  --line-height-tight: var(--line-height-tight);
-  --line-height-normal: var(--line-height-normal);
-  --line-height-relaxed: var(--line-height-relaxed);
-  --line-height-loose: var(--line-height-loose);
-
-  /* ===== Shadows ===== */
-  --shadow-none: var(--shadow-none);
-  --shadow-sm: var(--shadow-sm);
-  --shadow-md: var(--shadow-md);
-  --shadow-lg: var(--shadow-lg);
-
-  /* ===== Transitions ===== */
-  --transition-fast: var(--duration-fast);
-  --transition-base: var(--duration-base);
-  --transition-slow: var(--duration-slow);
-
-  /* ===== Z-Index ===== */
-  --z-base: var(--z-base);
-  --z-dropdown: var(--z-dropdown);
-  --z-sticky: var(--z-sticky);
-  --z-fixed: var(--z-fixed);
-  --z-modal-backdrop: var(--z-modal-backdrop);
-  --z-modal: var(--z-modal);
-  --z-popover: var(--z-popover);
-  --z-tooltip: var(--z-tooltip);
-
-  /* ===== Opacity ===== */
-  --opacity-0: var(--opacity-0);
-  --opacity-disabled: var(--opacity-disabled);
-  --opacity-hover: var(--opacity-hover);
-  --opacity-light: var(--opacity-light);
-  --opacity-medium: var(--opacity-medium);
-  --opacity-high: var(--opacity-high);
-  --opacity-full: var(--opacity-full);
 }
 
 @layer base {
