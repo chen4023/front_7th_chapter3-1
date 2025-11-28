@@ -7,11 +7,8 @@ import {
   FormItem,
   FormLabel,
   Input,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+  NativeSelect,
+  NativeSelectOption,
   Textarea,
 } from '@/components/ui';
 
@@ -77,21 +74,17 @@ export const EntityForm: React.FC<EntityFormProps> = ({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>역할</FormLabel>
-                  <Select 
-                    onValueChange={field.onChange} 
-                    value={field.value || 'user'}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="역할 선택" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="user">사용자</SelectItem>
-                      <SelectItem value="moderator">운영자</SelectItem>
-                      <SelectItem value="admin">관리자</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <FormControl>
+                    <NativeSelect 
+                      {...field}
+                      value={field.value || 'user'}
+                      className="w-full"
+                    >
+                      <NativeSelectOption value="user">사용자</NativeSelectOption>
+                      <NativeSelectOption value="moderator">운영자</NativeSelectOption>
+                      <NativeSelectOption value="admin">관리자</NativeSelectOption>
+                    </NativeSelect>
+                  </FormControl>
                 </FormItem>
               )}
             />
@@ -102,21 +95,17 @@ export const EntityForm: React.FC<EntityFormProps> = ({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>상태</FormLabel>
-                  <Select 
-                    onValueChange={field.onChange} 
-                    value={field.value || 'active'}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="상태 선택" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="active">활성</SelectItem>
-                      <SelectItem value="inactive">비활성</SelectItem>
-                      <SelectItem value="suspended">정지</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <FormControl>
+                    <NativeSelect 
+                      {...field}
+                      value={field.value || 'active'}
+                      className="w-full"
+                    >
+                      <NativeSelectOption value="active">활성</NativeSelectOption>
+                      <NativeSelectOption value="inactive">비활성</NativeSelectOption>
+                      <NativeSelectOption value="suspended">정지</NativeSelectOption>
+                    </NativeSelect>
+                  </FormControl>
                 </FormItem>
               )}
             />
@@ -174,21 +163,18 @@ export const EntityForm: React.FC<EntityFormProps> = ({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>카테고리</FormLabel>
-                <Select 
-                  onValueChange={field.onChange} 
-                  value={field.value || ''}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="카테고리 선택" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="development">Development</SelectItem>
-                    <SelectItem value="design">Design</SelectItem>
-                    <SelectItem value="accessibility">Accessibility</SelectItem>
-                  </SelectContent>
-                </Select>
+                <FormControl>
+                  <NativeSelect 
+                    {...field}
+                    value={field.value || ''}
+                    className="w-full"
+                  >
+                    <NativeSelectOption value="">카테고리 선택</NativeSelectOption>
+                    <NativeSelectOption value="development">Development</NativeSelectOption>
+                    <NativeSelectOption value="design">Design</NativeSelectOption>
+                    <NativeSelectOption value="accessibility">Accessibility</NativeSelectOption>
+                  </NativeSelect>
+                </FormControl>
               </FormItem>
             )}
           />
@@ -215,4 +201,3 @@ export const EntityForm: React.FC<EntityFormProps> = ({
     </Form>
   );
 };
-
