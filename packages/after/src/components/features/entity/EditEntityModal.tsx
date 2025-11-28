@@ -62,7 +62,7 @@ export const EditEntityModal: React.FC<EditEntityModalProps> = ({
       await updateEntity(data.id, getData());
       reset();
       onClose();
-      onSuccess?.(`${entityLabel}가 수정되었습니다`);
+      onSuccess?.(`${entityLabel}이 수정되었습니다`);
     } catch (error: unknown) {
       onError?.(getErrorMessage(error));
     }
