@@ -5,7 +5,7 @@ import {
   CreateEntityModal,
   EditEntityModal,
 } from '@/components/features/entity';
-import { useEntityContext } from '@/contexts/EntityContext';
+import { EntityProvider, useEntityContext } from '@/contexts/EntityContext';
 import { useModal } from '@/hooks/useModal';
 import { useAlert } from '@/hooks/useAlert';
 import type { User } from '@/services/userService';
@@ -18,7 +18,7 @@ type Entity = User | Post;
  * ManagementPage 내부 컨텐츠
  * EntityProvider 내부에서 Context를 사용
  */
-export function ManagementPage() {
+function ManagementContent() {
   const { entityType, setEntityType } = useEntityContext();
   
   // UI 상태
@@ -103,6 +103,16 @@ export function ManagementPage() {
       />
     </div>
   );
-};
+}
 
-
+/**
+ * 관리 페이지
+ * EntityProvider로 감싸서 모든 하위 컴포넌트가 상태를 공유
+ */
+export function ManagementPage() {
+  return (
+    <EntityProvider>
+      <ManagementContent />
+    </EntityProvider>
+  );
+}
